@@ -9,7 +9,9 @@ public class Typespeed {
     private final Logger LOG = LogManager.getLogger(Main.class);
     static Scanner GetInput = new Scanner(System.in);
     TextList TextList;
-    private String Text;
+    protected String Text;
+    private int Mistakes;
+    private int WPM;
 
     public void StartTypeSpeedTest(int Seconds, int Difficulty) {
         // TODO: Create Typespeed Test
@@ -17,6 +19,7 @@ public class Typespeed {
 
         GetTextFromTL(Difficulty);
 
+        System.out.println("Your Test begins: \n" + Text);
 
 
     }
@@ -47,22 +50,28 @@ public class Typespeed {
                 throw new IllegalArgumentException("Unknown Difficulty: " + Difficulty);
             }
         }
-        SetText(TextList.getText());
+        Text = TextList.getText();
+        LOG.info("Extracted Text: ");
         LOG.info(TextList.getText());
     }
 
 
+    // GETTER
+    public int GetMistakes() {
+        return Mistakes;
+    }
+
+    public int GetWPM() {
+        return WPM;
+    }
 
     // SETTER
 
-    private void SetText(String TextToType) {
-        Text = TextToType;
+    protected void SetMistakes(int Value) {
+        Mistakes = Value;
     }
 
-
-    // GETTER
-
-    private String GetText() {
-        return Text;
+    protected void SetWPM(int Value) {
+        WPM = Value;
     }
 }
